@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+
+    <title>MySalon</title>
+  </head>
+  <body class="d-flex flex-column h-100" id="book-online">
+    <div class="container-xl">
+      <div class="row">
+        <div class="col-12 mb-5 custonbgy text-dark border-bottom shadow">
+          <!-- Header -->
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="index.html"
+              ><h2 class="logo">My Salon</h2></a
+            >
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse justify-content-end"
+              id="navbarNavAltMarkup"
+            >
+              <div class="navbar-nav">
+                <a class="nav-item nav-link" href="index.html"
+                  ><img
+                    src="imgs/house.svg"
+                    class="line-height-0"
+                    alt=""
+                    width="20"
+                    height="20"
+                    title="Icons"
+                  />
+                  Home</a
+                >
+                <a class="nav-item nav-link" href="the-stylist.html"
+                  ><img
+                    src="imgs/person-square.svg"
+                    class="line-height-0"
+                    alt=""
+                    width="20"
+                    height="20"
+                    title="Icons"
+                  />
+                  The Stylist</a
+                >
+                <a class="nav-item nav-link" href="services.html"
+                  ><img
+                    src="imgs/grid.svg"
+                    class="line-height-0"
+                    alt=""
+                    width="20"
+                    height="20"
+                    title="Icons"
+                  />
+                  Services</a
+                >
+                <a class="nav-item nav-link active" href="book-online.html"
+                  ><img
+                    src="imgs/table.svg"
+                    class="line-height-0"
+                    alt=""
+                    width="20"
+                    height="20"
+                    title="Icons"
+                  />
+                  Book Online</a
+                >
+                <a class="nav-item nav-link" href="contact-us.html"
+                  ><img
+                    src="imgs/chat-square-text.svg"
+                    class="line-height-0"
+                    alt=""
+                    width="20"
+                    height="20"
+                    title="Icons"
+                  />
+                  Contact us</a
+                >
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Main -->
+      <div class="row">
+        <div class="col mb-5 text-center">
+          <h2 class="border-top border-bottom bg-light mb-0">
+            Book an Appointment
+          </h2>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-8 py-3 custonbgb shadow">
+          <h4 class="text-decoration-underline pt-3">Option 1:</h4>
+          <p class="text-muted">
+            Choose a day and time from the next 7 calendar days:
+          </p>
+        </div>
+        <div class="col-4 py-3 custonbgb shadow">
+          <h4 class="text-decoration-underline pt-3">Option 2:</h4>
+
+          <!-- Date Picker Input -->
+          <div class="wrapper">
+            <label>
+              <input
+                id="input-pop"
+                type="text"
+                class="dateselect"
+                placeholder="Click and chose a day"
+                required="required"
+              />
+              <span
+                ><img
+                  src="imgs/table.svg"
+                  class="line-height-0"
+                  alt=""
+                  width="20"
+                  height="20"
+                  title="Chose a day"
+              /></span>
+            </label>
+          </div>
+          <!-- End ate Picker Input -->
+        </div>
+        <!-- Force next columns to break to new line -->
+        <div class="w-100 mt-1"></div>
+        <div class="col-12 py-3 custonbgb shadow" id="weekHours"></div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col text-center py-3 custonbgy shadow">
+          <h4>Appointments</h4>
+          <p class="fw-normal">
+            Please arrive 15 mins prior to your appointment to ensure you
+            receive your full service. We recommend that you book your next
+            appointment prior to leaving the salon so that we can be sure to
+            accommodate your schedule.
+          </p>
+        </div>
+      </div>
+
+      <!-- <FULL SCREEN MODAL - OPTION 1> -->
+      <div
+        class="modal fade"
+        id="fullScreenWeekModal"
+        tabindex="-1"
+        aria-labelledby="fullScreenModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-fullscreen">
+          <div class="modal-content">
+            <div class="modal-body container-xl">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card mb-1 text-center bg-light shadow">
+                    <div class="card-header custonbgp" id="modal-card-header">
+                      date
+                    </div>
+                    <div class="card-body">
+                      <form class="row g-3 needs-validation" novalidate>
+                        <h6>Provide your information:</h6>
+                        <div class="col-md-6">
+                          <div class="input-group has-validation">
+                            <span
+                              class="input-group-text"
+                              id="inputGroupPrepend"
+                              >First name:</span
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="userFirstName"
+                              value=""
+                              name="userFirstName"
+                              aria-describedby="inputGroupPrepend"
+                              required
+                            />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">
+                              Please enter with your first name.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="input-group has-validation">
+                            <span
+                              class="input-group-text"
+                              id="inputGroupPrepend"
+                              >Last name:</span
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="userLasttName"
+                              aria-describedby="inputGroupPrepend"
+                              value=""
+                              name="userLasttName"
+                              required
+                            />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">
+                              Please enter with your last name.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-group has-validation">
+                            <span
+                              class="input-group-text"
+                              id="inputGroupPrepend"
+                              >Email adress:</span
+                            >
+                            <input
+                              type="email"
+                              class="form-control"
+                              id="userEmail"
+                              value=""
+                              name="userEmail"
+                              aria-describedby="inputGroupPrepend"
+                              required
+                            />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">
+                              Please provide a valid email address.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="input-group has-validation">
+                            <span
+                              class="input-group-text"
+                              id="inputGroupPrepend"
+                              >Phone number:</span
+                            >
+                            <input
+                              type="tel"
+                              class="form-control"
+                              id="userPhoneNumber"
+                              value=""
+                              name="userPhoneNumber"
+                              aria-describedby="inputGroupPrepend"
+                              required
+                            />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">
+                              Please provide a valid phone number.
+                            </div>
+                          </div>
+                        </div>
+                        <hr />
+                        <div class="col-12">
+                          <button class="btn btn-primary" type="submit">
+                            Book now
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer custonbgb">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- </FULL SCREEN MODAL - OPTION 1> -->
+
+      <!-- <FULL SCREEN MODAL - OPTION 2> -->
+      <div
+        class="modal fade admin-area"
+        id="fullScreenModal"
+        tabindex="-1"
+        aria-labelledby="fullScreenModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-fullscreen">
+          <div class="modal-content">
+            <div class="modal-body container-xl">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card mb-1 text-center bg-light shadow">
+                    <div class="card-header custonbgp h5" id="dateTitle">
+                      Date
+                    </div>
+                    <div class="card-body">
+                      <form class="row g-3 needs-validation" novalidate>
+                        <div class="col-12">
+                          <h6>Chose a time:</h6>
+                          <hr />
+                          <div
+                            class="form-check ps-0"
+                            id="form-check-hours"
+                          ></div>
+                          <hr />
+                        </div>
+                        <h6>Provide your information:</h6>
+                        <div class="col-md-6">
+                          <div class="input-group has-validation">
+                            <span
+                              class="input-group-text"
+                              id="inputGroupPrepend"
+                              >First name:</span
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="userFirstName"
+                              value=""
+                              name="userFirstName"
+                              aria-describedby="inputGroupPrepend"
+                              required
+                            />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">
+                              Please enter with your first name.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="input-group has-validation">
+                            <span
+                              class="input-group-text"
+                              id="inputGroupPrepend"
+                              >Last name:</span
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="userLasttName"
+                              aria-describedby="inputGroupPrepend"
+                              value=""
+                              name="userLasttName"
+                              required
+                            />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">
+                              Please enter with your last name.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-group has-validation">
+                            <span
+                              class="input-group-text"
+                              id="inputGroupPrepend"
+                              >Email adress:</span
+                            >
+                            <input
+                              type="email"
+                              class="form-control"
+                              id="userEmail"
+                              value=""
+                              name="userEmail"
+                              aria-describedby="inputGroupPrepend"
+                              required
+                            />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">
+                              Please provide a valid email address.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="input-group has-validation">
+                            <span
+                              class="input-group-text"
+                              id="inputGroupPrepend"
+                              >Phone number:</span
+                            >
+                            <input
+                              type="tel"
+                              class="form-control"
+                              id="userPhoneNumber"
+                              value=""
+                              name="userPhoneNumber"
+                              aria-describedby="inputGroupPrepend"
+                              required
+                            />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">
+                              Please provide a valid phone number.
+                            </div>
+                          </div>
+                        </div>
+                        <hr />
+                        <div class="col-12">
+                          <button class="btn btn-primary" type="submit">
+                            Book now
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer custonbgb">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- </ULL SCREEN MODAL - OPTION 2> -->
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-auto container-xl bg-dark bg-gradient pt-3 text-white">
+      <div class="row">
+        <div class="col">
+          <div class="d-flex justify-content-center">
+            <p>Copyright &copy; 2021 - My Salon</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/datepicker.js"></script>
+    <script src="js/custon.js"></script>
+  </body>
+</html>

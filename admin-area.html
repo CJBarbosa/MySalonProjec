@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <title>MySalon</title>
+  </head>
+  <body class="d-flex flex-column h-100">
+    <div class="container-xl">
+      <!-- Main -->
+      <div class="row mb-5">
+        <div class="col d-flex justify-content-between text-center card-header">
+          <a
+            href="change-password.html"
+            class="btn btn-outline-primary col-sm-3"
+            >Change Password</a
+          >
+          <h2 class="col-sm-6 mb-0">Admin Area</h2>
+          <a href="index.html" class="btn btn-outline-primary col-sm-3"
+            >Back to website/Logoff</a
+          >
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between">
+              <button
+                class="btn btn-outline-primary col-2"
+                onclick="previous()"
+              >
+                <<
+              </button>
+              <h3 class="col-8 text-center" id="monthAndYear"></h3>
+              <button class="btn btn-outline-primary col-2" onclick="next()">
+                >>
+              </button>
+            </div>
+            <table class="table table-bordered table-responsive-sm" id="table">
+              <thead id="calendar-head"></thead>
+              <tbody id="calendar-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- <FULL SCREEN MODAL - ADMIN AREA> -->
+      <div
+        class="modal fade admin-area"
+        id="fullScreenModal"
+        tabindex="-1"
+        aria-labelledby="fullScreenModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-fullscreen">
+          <div class="modal-content">
+            <div class="modal-body container-xl">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card mb-1 text-center bg-light shadow">
+                    <div class="card-header custonbgp h5" id="dateTitle">
+                      Date
+                    </div>
+                    <div class="card-body">
+                      <form class="row g-3 needs-validation" novalidate>
+                        <div class="col-12">
+                          <h6>
+                            To create your new appoitment, chose a time and fill
+                            the form:
+                          </h6>
+                          <hr />
+                          <div
+                            class="form-check ps-0"
+                            id="form-check-hours"
+                          ></div>
+                          <hr />
+                        </div>
+                        <h6>Provide your information:</h6>
+                        <div class="col-md-6">
+                          <div class="input-group has-validation">
+                            <span
+                              class="input-group-text"
+                              id="inputGroupPrepend"
+                              >First name:</span
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="userFirstName"
+                              value=""
+                              name="userFirstName"
+                              aria-describedby="inputGroupPrepend"
+                              required
+                            />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">
+                              Please enter with your first name.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="input-group has-validation">
+                            <span
+                              class="input-group-text"
+                              id="inputGroupPrepend"
+                              >Last name:</span
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="userLasttName"
+                              aria-describedby="inputGroupPrepend"
+                              value=""
+                              name="userLasttName"
+                              required
+                            />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">
+                              Please enter with your last name.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-group has-validation">
+                            <span
+                              class="input-group-text"
+                              id="inputGroupPrepend"
+                              >Email adress:</span
+                            >
+                            <input
+                              type="email"
+                              class="form-control"
+                              id="userEmail"
+                              value=""
+                              name="userEmail"
+                              aria-describedby="inputGroupPrepend"
+                              required
+                            />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">
+                              Please provide a valid email address.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="input-group has-validation">
+                            <span
+                              class="input-group-text"
+                              id="inputGroupPrepend"
+                              >Phone number:</span
+                            >
+                            <input
+                              type="tel"
+                              class="form-control"
+                              id="userPhoneNumber"
+                              value=""
+                              name="userPhoneNumber"
+                              aria-describedby="inputGroupPrepend"
+                              required
+                            />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">
+                              Please provide a valid phone number.
+                            </div>
+                          </div>
+                        </div>
+                        <hr />
+                        <div class="col-12">
+                          <button class="btn btn-primary" type="submit">
+                            Book now
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer custonbgb">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- </FULL SCREEN MODAL - ADMIN AREA> -->
+    </div>
+    <!-- Footer -->
+    <div class="mt-auto container-xl bg-dark bg-gradient pt-3 text-white">
+      <div class="row">
+        <div class="col">
+          <div class="d-flex justify-content-center">
+            <p>Copyright &copy; 2021 - My Salon</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/custon.js"></script>
+  </body>
+</html>
