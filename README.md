@@ -1,6 +1,6 @@
 This project is part of the ComIT Node.js course.
-A website with a book appointments online.
-It is using the technologies:
+A website with a book online appointment and Admin Area.
+It is using the following technologies:
 -HTML5
 -CSS3
 -JavaScript
