@@ -161,10 +161,14 @@
                 class="form-control"
                 id="namevalidation"
                 placeholder="Your Name"
+                minlength="3"
+                pattern="^[a-zA-Z]*$"
                 required
               />
               <div class="valid-feedback">Looks good!</div>
-              <div class="invalid-feedback">Please enter with your name.</div>
+              <div class="invalid-feedback">
+                Please, correct or enter with your name.
+              </div>
             </div>
             <div class="mb-3">
               <label for="emailvalidation" class="form-label"
@@ -175,6 +179,7 @@
                 class="form-control"
                 id="emailvalidation"
                 placeholder="Your Email Address"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 required
               />
               <div class="valid-feedback">Looks good!</div>
@@ -203,6 +208,7 @@
                 id="messageTextarea1"
                 rows="3"
                 placeholder="Your Message Here"
+                minlength="10"
                 required
               ></textarea>
               <div class="valid-feedback">Looks good!</div>
@@ -221,7 +227,9 @@
                 >Send me a copy</label
               >
             </div>
-            <button type="submit" class="btn btn-outline-dark -custonbgb">Submit</button>
+            <button type="submit" class="btn btn-outline-dark -custonbgb">
+              Submit
+            </button>
           </form>
         </div>
       </div>

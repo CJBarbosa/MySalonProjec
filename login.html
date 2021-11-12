@@ -27,6 +27,7 @@
                 class="form-control"
                 id="floatingInput"
                 placeholder="name@example.com"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 required
               />
               <label for="floatingInput">Email address</label>
@@ -38,6 +39,7 @@
                 id="floatingPassword"
                 placeholder="Password"
                 required
+                minlength="6"
               />
               <label for="floatingPassword">Password</label>
             </div>

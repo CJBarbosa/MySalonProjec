@@ -119,7 +119,7 @@ var picker = {
       month = inst.hMonth.value,
       year = inst.hYear.value;
 
-    // (B1-2) DATE RANGE CALCULATION (UTC+0)
+    // (B1-2) DATE RANGE CALCULATION (UTC+0) -6
     let daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate(),
       startDay = new Date(Date.UTC(year, month - 1, 1)).getUTCDay(), // SUN IS 0
       endDay = new Date(Date.UTC(year, month - 1, daysInMonth)).getUTCDay();
@@ -130,8 +130,13 @@ var picker = {
     let today = new Date(),
       todayDate = null;
 
+    /* UTC+0 STANDARD
     if (today.getUTCMonth() + 1 == month && today.getUTCFullYear() == year) {
       todayDate = today.getUTCDate();
+    } */
+    //UTC-6 LOCAL HOUR
+    if (today.getMonth() + 1 == month && today.getFullYear() == year) {
+      todayDate = today.getDate();
     }
 
     // (B1-4) DAY NAMES
