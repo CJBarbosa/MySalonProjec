@@ -175,11 +175,11 @@ function populateHours() {
     hours = "";
   }
   //Create invalid message feedback to show when needed
-  let divIinvalidFeedback = document.createElement("div");
-  divIinvalidFeedback.classList.add("invalid-feedback");
+  let divInvalidFeedback = document.createElement("div");
+  divInvalidFeedback.classList.add("invalid-feedback");
   let iFTextNode = document.createTextNode("Please, chose a time.");
-  divIinvalidFeedback.appendChild(iFTextNode);
-  formCheck.appendChild(divIinvalidFeedback);
+  divInvalidFeedback.appendChild(iFTextNode);
+  formCheck.appendChild(divInvalidFeedback);
 }
 
 /*
