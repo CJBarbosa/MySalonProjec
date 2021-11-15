@@ -1,6 +1,24 @@
 /*
  * GLOBAL
  */
+
+//MARK THE CURRENT PAGE NAVEBAR AS SELECTED
+window.onload = function get_body() {
+  //Get the page id of the current page
+  const currentPage = document.body.id.replace("-", "");
+  //Get the menu links
+  var aTags = document.getElementsByClassName("nav-link");
+  for (var i = 0; i < aTags.length; i++) {
+    if (
+      aTags[i].textContent.trim().toUpperCase().replace(" ", "") ==
+      currentPage.toUpperCase()
+    ) {
+      aTags[i].classList.add("active"); //Add active to the current page menu link
+      break;
+    }
+  }
+};
+
 //Validation to forms (all form-check)
 window.addEventListener("load", function () {
   // Starter JavaScript for disabling form submissions if there are invalid fields
