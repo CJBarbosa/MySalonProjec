@@ -74,24 +74,27 @@ if (document.getElementById("book-online")) {
     let divCardBody = document.createElement("div");
     divCardBody.classList.add("card-body");
     if (TodayDate !== 0) {
+      let auxId = 0;
       for (hour = 9; hour < 17; hour += 0.5) {
         let aElement = document.createElement("a");
-        aElement.classList.add("btn", "btn-outline-secondary");
-        aElement.href = "#";
+        aElement.classList.add("btn", "btn-outline-secondary");       
         aElement.setAttribute("data-bs-toggle", "modal");
         aElement.setAttribute("data-bs-target", "#fullScreenWeekModal");
         aElement.setAttribute("onclick", "transferTitle($(this))");
         if (hour % 1 === 0) {
+          aElement.href = auxId;
           //Verify if it is interger to print hours properly
           let textNode = document.createTextNode(`${hour}:00 - ${hour}:30`);
           aElement.appendChild(textNode);
         } else {
+          aElement.href = auxId;
           let textNode = document.createTextNode(
             `${Math.trunc(hour)}:30 - ${hour + 0.5}:00`
           );
           aElement.appendChild(textNode);
         }
         divCardBody.appendChild(aElement);
+        auxId ++;
       }
     } else {
       //Sunday - Not a working day
@@ -107,14 +110,22 @@ if (document.getElementById("book-online")) {
 
   //(OPTION 1) GET DATE TITLE FROM OPTION 1 AND ADD IT TO MODAL TITLE
   function transferTitle(elmnt) {
+    let bookPosition = elmnt.prop('href').split("/").pop(); //Get hour selected by user
+    console.log(bookPosition);
     let bookHour = elmnt.text(); //Get hour selected by user
     //To get the day title -> go up 2 levels in the tree and get first child text.
     let secondParent = elmnt.parentsUntil("col-12", ".card");
     let bookDate = secondParent.children(".card-header").text();
-    //transfre the date and hour text to the modal title.
+    //transfer the date and hour text to the modal title.
     document.getElementById(
       "modal-card-header"
     ).innerText = `${bookDate} - ${bookHour}`;
+    //transfer the date to hidden input to be saved in db.
+    $("#bookDate").val(bookDate);
+    //transfer the hour to hidden input to be saved in db.
+    $("#bookHour").val(bookHour);
+    //transfer the hour to hidden input to be saved in db.
+    $("#bookPosition").val(bookPosition);
   }
 
   // (OPTION 2) START DATE PICKER - ATTACH IT ON LOAD
@@ -157,10 +168,16 @@ function getClickedDate(anyString) {
     month: "long",
     day: "numeric",
   };
-  dateTitle.innerText = new Date(theYear, theMonth, theDay).toLocaleString(
+  
+   selectedDate = new Date(theYear, theMonth, theDay).toLocaleString(
     "en-US",
     options
   );
+  //(OPTION 2) transfer the selected date to a modal title
+  dateTitle.innerText = selectedDate;
+  //(OPTION 2) transfer the selected date to an hidden input to be saved in db
+  $('#bookDate2').val(selectedDate);
+
   populateHours();
 }
 
@@ -170,6 +187,7 @@ function populateHours() {
   let formCheck = document.getElementById("form-check-hours");
   formCheck.innerHTML = ""; //Clear element to build everything new
   let hours = "";
+  let cont = 0;
   //Business open 9 to 17, create book option in every half hour
   for (let hour = 9; hour < 17; hour += 0.5) {
     hours =
@@ -180,8 +198,10 @@ function populateHours() {
     inputRadio.setAttribute("type", "radio");
     inputRadio.classList.add("btn-check");
     inputRadio.setAttribute("name", "hours");
+    inputRadio.setAttribute("value", hours.replace(/\s/g, ""));
     inputRadio.setAttribute("id", hours.replace(/\s/g, ""));
     inputRadio.setAttribute("autocomplete", "off");
+    inputRadio.setAttribute("onclick", `setBookPosition(${cont})`);
     inputRadio.required = true;
     formCheck.appendChild(inputRadio);
     let labelRadio = document.createElement("label");
@@ -191,6 +211,7 @@ function populateHours() {
     labelRadio.appendChild(labelRadioTextNode);
     formCheck.appendChild(labelRadio);
     hours = "";
+    cont++;
   }
   //Create invalid message feedback to show when needed
   let divInvalidFeedback = document.createElement("div");
@@ -200,6 +221,10 @@ function populateHours() {
   formCheck.appendChild(divInvalidFeedback);
 }
 
+function setBookPosition(index){
+  //(OPTION 2) transfer the selected book position to an hidden input to be saved in db
+  $('#BookPosition2').val(index);
+}
 /*
  * ADMIN AREA PAGE <--------------------------------------------------------
  */
